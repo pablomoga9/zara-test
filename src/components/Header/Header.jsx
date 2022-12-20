@@ -2,7 +2,9 @@ import React from "react";
 
 const Header = () => {
   return <>
-    <h2 className="header_title">Podcaster</h2>
+    <section className="header_container">
+      <h2 className="header_title">Podcaster</h2>
+    </section>
   </>;
 };
 

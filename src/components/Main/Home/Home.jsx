@@ -15,14 +15,20 @@ const Home = () => {
 
   return <>
     <section>
+      <div className="filter_box">
+        <h3 className="numberFilter">100</h3>
+        <input type="text" placeholder="Filter podcasts..." />
+      </div>
+      <div className="podcast_list">
       {list.length !== 0 ? (list.feed.entry).map(element => {
-        return <div>
-          {console.log(element['im:image'][0].label)}
-          <img src={`${element['im:image'][0].label}`} alt="" />
+        return <div className="list_item">
+          {console.log(element['im:image'][2].label)}
+          <img src={`${element['im:image'][2].label}`} alt="" />
           <h3>{element['im:name'].label}</h3>
           <p>Author:{element['im:artist'].label}</p>
         </div>
       }) : <h1>Nothing</h1>}
+      </div>
     </section>
   </>;
 };

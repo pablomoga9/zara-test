@@ -11,7 +11,6 @@ const Main = () => {
       <Route element={<Podcast/>} path="/podcast/:podcastId"/>
       <Route element={<Episode/>} path="/podcast/:podcastId/episode/:episodeId"/>
     </Routes>
-    <h1>This is Main</h1>
   </>;
 };
 
