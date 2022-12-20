@@ -1,17 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
+import { listContext } from "../../../context/listContext";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [list, setList] = useState([]);
+  const { data, setData } = useContext(listContext);
+  const [date, setDate] = useState(null);
   useEffect(() => {
 
     const getPodcasts = async () => {
-      const res = await axios.get('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')
-      console.log(res.data.feed.entry[0]['im:image'])
-      setList(res.data)
+      try {
+        //  if(!localStorage.getItem("list")){
+        const res = await axios.get('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json');
+        localStorage.setItem("list", res.data);
+        localStorage.setItem("date", new Date());
+        setData(res.data)
+        setDate(new Date());
+        //  }
+        //  else{
+        console.log(localStorage.getItem("list"))
+        const getList = localStorage.getItem("list");
+        console.log(getList)
+        //  }
+
+
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
     getPodcasts()
-  }, [])
+  }, [setData, setDate])
 
   return <>
     <section>
@@ -20,14 +39,15 @@ const Home = () => {
         <input type="text" placeholder="Filter podcasts..." />
       </div>
       <div className="podcast_list">
-      {list.length !== 0 ? (list.feed.entry).map(element => {
-        return <div className="list_item">
-          {console.log(element['im:image'][2].label)}
-          <img src={`${element['im:image'][2].label}`} alt="" />
-          <h3>{element['im:name'].label}</h3>
-          <p>Author:{element['im:artist'].label}</p>
-        </div>
-      }) : <h1>Nothing</h1>}
+        {data.length !== 0 ? (data.feed.entry).map((element, i) => {
+          return <div key={i} className="list_item">
+            <img src={`${element['im:image'][2].label}`} alt="" />
+            <Link to={`/podcast/${element.id.attributes["im:id"]}`}>
+              <h3>{element['im:name'].label}</h3>
+            </Link>
+            <p>Author:{element['im:artist'].label}</p>
+          </div>
+        }) : <h1>Nothing</h1>}
       </div>
     </section>
   </>;
