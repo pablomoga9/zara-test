@@ -7,18 +7,22 @@ import Main from './components/Main/Main';
 import '../src/styles/styles.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { listContext } from './context/listContext';
+import { podcastContext } from './context/podcastContext';
 
 function App() {
-  const [data,setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [podcast, setPodcast] = useState([])
 
   return (
     <div className="App">
       <BrowserRouter>
-      <listContext.Provider value={{data,setData}}>
-        <Header/>
-        <Main/>
+        <listContext.Provider value={{ data, setData }}>
+          <podcastContext.Provider value={{ podcast, setPodcast }}>
+            <Header />
+            <Main />
+          </podcastContext.Provider>
         </listContext.Provider>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
