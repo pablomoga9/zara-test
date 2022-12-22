@@ -12,7 +12,8 @@ const Podcast = () => {
     setPodcast([])
     const getPodcast = async () => {
       try {
-        let getId = (window.location.pathname).split("podcast/")[1];
+        let getId = (window.location.pathname).split("podcast/").pop().split("/episode")[0];
+        console.log(getId);
         const res = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${getId}`)}`)
         const jsonRes = JSON.parse(res.data.contents)
         setPodcastData(jsonRes)
@@ -34,12 +35,22 @@ const Podcast = () => {
   }, [])
 
 
-  function getImageSrc() {
-    const podcastResult = podcast.children[0].children.filter(function (item) {
-      return item.name === "itunes:image"
-    })
-    console.log(podcastResult);
-    return podcastResult[0].attributes.href;
+  async function getImageSrc() {
+    try{
+      const podcastResult = podcast.children[0].children.filter(function (item) {
+        return item.name === "itunes:image"
+      }) 
+      console.log(podcastResult);
+      return podcastResult[0].attributes.href;
+    }
+    catch(error){
+      const podcastResult = podcast.children[0].children[0].children.filter(function(item){
+        return item.name === "itunes:image"
+      })
+      console.log(podcastResult[0].attributes.href); 
+      return podcastResult[0].attributes.href;
+    }
+   
   }
   function getTitle() {
     const podcastResult = podcast.children[0].children.filter(function (item) {
@@ -78,7 +89,7 @@ const Podcast = () => {
           <p>Desription: <br />
             {getDescription()}
           </p></div>
-        <Episode data={getEpisodes()} />
+        {(window.location.pathname).includes("/episode") ? null : <Episode data={getEpisodes()} />}
       </div> : <div className="podcastLoading"><img className="loadingImage" src={podcastData.results[0].artworkUrl100} alt="" /><h2 className="loadingText">Loading...</h2></div> : <h2>None</h2>}
     </div>
   </>;
