@@ -1,7 +1,7 @@
 import React from "react";
 import Home from './Home/Home';
 import Podcast from "./Podcast/Podcast";
-import Episode from "./Episode/Episode";
+import Episode from "./Podcast/Episode/Episode";
 import { Route, Routes } from "react-router-dom";
 
 const Main = () => {
