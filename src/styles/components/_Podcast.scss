@@ -1,0 +1,28 @@
+.podcastInfo{
+
+}
+
+.podcastGroup{
+    display: flex;
+    width: 90%;
+}
+
+.podcastDetail{
+    width: 30%;
+    margin: auto;
+    -webkit-box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+    -moz-box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+    box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+    img{
+        width: 80%;
+        padding: 30px;
+        margin: auto;
+        border-bottom: 1px solid;
+    }
+    h3{
+
+    }
+    p{
+        width: 90%;
+    }
+}
