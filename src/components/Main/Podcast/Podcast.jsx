@@ -7,13 +7,14 @@ const Podcast = () => {
   var XMLParser = require('react-xml-parser');
   const [podcastData, setPodcastData] = useState(null);
   const { podcast, setPodcast } = useContext(podcastContext);
+  const [id,setId] = useState(null);
 
   useEffect(() => {
     setPodcast([])
     const getPodcast = async () => {
       try {
-        let getId = (window.location.pathname).split("podcast/").pop().split("/episode")[0];
-        console.log(getId);
+        let getId = (window.location.pathname).split("podcast/")[1];
+        setId(getId);
         const res = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${getId}`)}`)
         const jsonRes = JSON.parse(res.data.contents)
         setPodcastData(jsonRes)
@@ -21,7 +22,6 @@ const Podcast = () => {
         console.log(jsonRes.results[0].feedUrl);
 
         const episodes = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`${jsonRes.results[0].feedUrl}`)}`);
-        console.log("hi")
         console.log(episodes.data.contents)
         const xmlJson = new XMLParser().parseFromString(episodes.data.contents)
         console.log(xmlJson)
@@ -35,22 +35,12 @@ const Podcast = () => {
   }, [])
 
 
-  async function getImageSrc() {
-    try{
-      const podcastResult = podcast.children[0].children.filter(function (item) {
-        return item.name === "itunes:image"
-      }) 
-      console.log(podcastResult);
-      return podcastResult[0].attributes.href;
-    }
-    catch(error){
-      const podcastResult = podcast.children[0].children[0].children.filter(function(item){
-        return item.name === "itunes:image"
-      })
-      console.log(podcastResult[0].attributes.href); 
-      return podcastResult[0].attributes.href;
-    }
-   
+  function getImageSrc() {
+    const podcastResult = podcast.children[0].children.filter(function (item) {
+      return item.name === "itunes:image"
+    })
+    console.log(podcastResult);
+    return podcastResult[0].attributes.href;
   }
   function getTitle() {
     const podcastResult = podcast.children[0].children.filter(function (item) {
@@ -89,7 +79,9 @@ const Podcast = () => {
           <p>Desription: <br />
             {getDescription()}
           </p></div>
-        {(window.location.pathname).includes("/episode") ? null : <Episode data={getEpisodes()} />}
+        <Episode data={getEpisodes()} episodeId={id} podcastInfo={{img:getImageSrc(),
+        title:getTitle(),
+        description:getDescription(),author:getAuthor()}} />
       </div> : <div className="podcastLoading"><img className="loadingImage" src={podcastData.results[0].artworkUrl100} alt="" /><h2 className="loadingText">Loading...</h2></div> : <h2>None</h2>}
     </div>
   </>;
