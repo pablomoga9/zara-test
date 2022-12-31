@@ -4,21 +4,17 @@ import { useLocation } from "react-router-dom";
 
 const Play = () => {
   const location = useLocation();
-  console.log(location)
   const data = location.state;
-  console.log(data);
-  
-  function parseDescription(description){
-    const parser = new DOMParser();
-    const parsedDocument = parser.parseFromString(description,"text/html");
-    return parsedDocument;
-  }
-
+  console.log(data.podcast);
   return <div>
+    <div className="podcastDetail"><img src={data.podcast.img} alt="" />
+          <h3>{data.podcast.title}</h3>
+          <p>by {data.podcast.author}</p>
+          <p dangerouslySetInnerHTML={{__html:`Description:${data.podcast.description}`}}>
+          </p></div>
     <h1>{data.episodeTitle}</h1>
-    {/* {parseDescription(data.episodeDescription)} */}
+    <div dangerouslySetInnerHTML={{__html:data.episodeDescription}}></div>
     <audio src={data.episodeMedia} controls></audio>
-    {console.log(parseDescription(data.episodeDescription))}
   </div>;
 };
 

@@ -76,8 +76,7 @@ const Podcast = () => {
         <div className="podcastDetail"><img src={getImageSrc()} alt="" />
           <h3>{getTitle()}</h3>
           <p>by {getAuthor()}</p>
-          <p>Desription: <br />
-            {getDescription()}
+          <p dangerouslySetInnerHTML={{__html:`Description:${getDescription()}`}}>
           </p></div>
         <Episode data={getEpisodes()} episodeId={id} podcastInfo={{img:getImageSrc(),
         title:getTitle(),
