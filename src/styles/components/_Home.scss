@@ -9,9 +9,16 @@
         padding: 5px;
         border-radius: 10px;
         background: rgb(59, 124, 208);
+        width: 5%;
     }
     input{
-
+        border-color: rgb(182, 182, 182);
+        outline: none;
+        border-radius: 8px;
+        width: 30%;
+    }
+    input:focus{
+        outline-width: 0;
     }
 }
 
