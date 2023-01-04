@@ -22,8 +22,28 @@ La aplicación ha sido llevada a cabo usando React y SASS.
 
 ![clickList](assets/images/zaraHomeList.PNG)
 
-En la vista "/" tenemos una lista de los 100 podcasts musicales tráidos de iTunes. Dicha lista es almacenada en el localStorage del navegador en caso de haber pasado más de un día depués de su anterior carga.
+
+
+En la vista "/" tenemos una lista de los 100 podcasts musicales tráidos de iTunes. Nos muestra título, imagen y autor. Dicha lista es almacenada en el localStorage del navegador en caso de haber pasado más de un día depués de su anterior carga.
 
 ![clickList](assets/images/zaraHomeFilter.PNG)
 
-En esta misma vista tenemos la posibilidad de filtrar los resultados mostrados por medio de un input de texto. Dicho filtro será tanto para los títulos de los podcast como para los autores de estos.
+
+
+En esta misma vista tenemos la posibilidad de filtrar los resultados mostrados por medio de un input de texto y conocer el número de programas existentes que coincidan con la búsqueda. Dicho filtro será tanto para los títulos de los podcast como para los autores de estos.
+
+
+
+<b>Detalles de podcast</b>
+
+
+
+Si clickamos en cualquiera de los nombres de los podcast integrantes de la lista, accederemos al a vista  "/podcast/{podcastId}". En caso de no haber guardado la información sobre dicho podcast previamente en localStorage, tendremos una pantalla de carga hasta contar con los datos.
+
+
+![clickList](assets/images/zaraLoadingPodcast.PNG)
+
+
+
+Además, para cualquier proceso de carga entre vistas, en el header, se muestra un spinner hasta que el proceso haya finalizado.
+
