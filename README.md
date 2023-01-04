@@ -18,6 +18,8 @@ La aplicación ha sido llevada a cabo usando React y SASS.
 
 <h3>Vistas</h3>
 <b>Listado de podcast</b>
+
+
 ![clickList](assets/images/zaraHomeList.PNG)
 
 
