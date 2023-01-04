@@ -47,3 +47,9 @@ Si clickamos en cualquiera de los nombres de los podcast integrantes de la lista
 
 Además, para cualquier proceso de carga entre vistas, en el header, se muestra un spinner hasta que el proceso haya finalizado.
 
+
+![clickList](assets/images/zaraPodcastDetail.PNG)
+
+
+En la vista detalle del podcast encontramos su título, imagen, autor y una descripción por un lado. A su derecha, se muestra el número de episodios y una tabla de estos con sus respectivos títulos, fechas de publicación y duración en segundos. 
+
