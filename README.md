@@ -14,7 +14,7 @@ npm start
 ```
 
 <h3>Tech Stack</h3>
-La aplicación ha sido llevada a cabo usando React y SASS.
+La aplicación ha sido desarrollada con React y SASS.
 
 <h3>Vistas</h3>
 <b>Listado de podcast</b>
