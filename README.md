@@ -66,5 +66,5 @@ En esta vista encontramos de nuevo los detalles correspondientes al podcast a la
 
 
 
-![clickList](assets/images/zaraEisodeDetail.PNG)
+![clickList](assets/images/zaraEìsodeDetail.PNG)
 
