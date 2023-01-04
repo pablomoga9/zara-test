@@ -1,0 +1,42 @@
+.episodesList{
+    width: 60%;
+    margin: auto;
+    h3{
+        -webkit-box-shadow: 0px 3px 5px 3px rgba(110,110,110,0.55);
+        -moz-box-shadow: 0px 3px 5px 3px rgba(110,110,110,0.55);
+        box-shadow: 0px 3px 5px 3px rgba(110,110,110,0.55);
+        padding: 20px;
+        text-align: start;
+        margin-bottom: 30px;
+    }
+
+    .listContainer{
+        -webkit-box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+        -moz-box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+        box-shadow: 0px 6px 5px 3px rgba(110,110,110,0.55);
+        .columnNames{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+        ul{
+            list-style: none;
+            padding-right: 30px;
+            padding-bottom: 30px;
+            li{
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+                padding: 0px 10px 0px 10px;
+                grid: 40px;
+                a{
+                    text-decoration: none;
+                    color: rgb(33, 100, 176);
+                }
+            }
+        }
+    }
+   
+}
+
+.darkLi{
+    background: rgb(242, 242, 242);
+}

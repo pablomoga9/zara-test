@@ -4,23 +4,36 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    margin-top: 30px;
+    border-top-style: hidden;
+    border-bottom-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
     h3{
         color: white;
-        padding: 5px;
+        padding: 0px;
         border-radius: 10px;
         background: rgb(59, 124, 208);
+        width: 5%;
     }
     input{
-
+        border-color: rgb(182, 182, 182);
+        outline: none;
+        border-radius: 8px;
+        width: 30%;
+        
+    }
+    input:focus{
+        outline-width: 0;
     }
 }
 
 .podcast_list{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 80%;
+    width: 90%;
     position: absolute;
-    
+    margin-left: 20px;
     .list_item{
         // display: flex;
         width: 90%;
@@ -41,7 +54,11 @@
             margin: 0px;
         }
         p{
-
+            color: rgb(52, 52, 52);
+        }
+        a{
+            text-decoration: none;
+            color: black;
         }
     }
 }

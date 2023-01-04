@@ -2,7 +2,7 @@ import React from "react";
 import Home from './Home/Home';
 import Podcast from "./Podcast/Podcast";
 import Episode from "./Podcast/Episode/Episode";
-import Play from './Play/Play';
+import Play from "./Play/Play";
 import { Route, Routes } from "react-router-dom";
 
 const Main = () => {
