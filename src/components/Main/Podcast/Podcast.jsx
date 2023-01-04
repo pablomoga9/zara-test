@@ -20,13 +20,8 @@ const Podcast = () => {
         const res = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${getId}`)}`)
         const jsonRes = JSON.parse(res.data.contents)
         setPodcastData(jsonRes)
-
-        console.log(jsonRes.results[0].feedUrl);
-
         const episodes = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`${jsonRes.results[0].feedUrl}`)}`);
-        console.log(episodes.data.contents)
         const xmlJson = new XMLParser().parseFromString(episodes.data.contents)
-        console.log(xmlJson)
         setPodcast(xmlJson);
       }
       catch (error) {
@@ -41,7 +36,6 @@ const Podcast = () => {
     const podcastResult = podcast.children[0].children.filter(function (item) {
       return item.name === "itunes:image"
     })
-    console.log(podcastResult);
     return podcastResult[0].attributes.href;
   }
   function getTitle() {
@@ -60,8 +54,6 @@ const Podcast = () => {
     const podcastResult = podcast.children[0].children.filter(function (item) {
       return item.name === "description"
     })
-    // const deleteCarets = podcastResult[0].value.replace(/ *\<[^)]*\> */g, "")
-    // console.log(deleteCarets);
     return podcastResult[0].value;
   }
 

@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 const Play = () => {
   const location = useLocation();
   const data = location.state;
-  console.log(data.podcast);
   return <div className="podcastGroup">
     <div className="podcastDetail"><img src={data.podcast.img} alt="" />
           <h3>{data.podcast.title}</h3>

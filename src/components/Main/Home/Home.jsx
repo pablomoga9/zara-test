@@ -19,19 +19,14 @@ const Home = () => {
 
     const getPodcasts = async () => {
       try {
-        //  if(!localStorage.getItem("list")){
         const res = await axios.get('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json');
         localStorage.setItem("list", res.data);
         localStorage.setItem("date", new Date());
         setData(res.data)
         setDate(new Date());
-        //  }
-        //  else{
-        console.log(localStorage.getItem("list"))
+      
+       
         const getList = localStorage.getItem("list");
-        console.log(getList)
-        //  }
-
 
       }
       catch (error) {
