@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Episode = (props) => {
   
-  
+  const [changeColor,setChangeColor] = useState(true);
 
   function getTitle(arr){
     const title = arr.filter(item=>{
@@ -49,18 +49,36 @@ const Episode = (props) => {
   return <div className="episodesList">
     {console.log(props.data)}
     <h3>Episodes:{props.data.length}</h3>
+    <div className="listContainer">
+    <div className="columnNames">
+    <h4>Title</h4>
+    <h4>Date</h4>
+    <h4>Duration</h4>
+    </div>
     <ul className="list">
       {props.data.map((item,i)=>{
-       return <li key={i}>
-        <Link to={{pathname:`/podcast/${props.episodeId}/episode/${getId(item.children)}`}} state={{podcast:props.podcastInfo,
-        episodeTitle:getTitle(item.children),
-        episodeDescription:getDescription(item.children),
-        episodeMedia:getMedia(item.children)}}><p>{getTitle(item.children)}</p></Link>
-        <p>{getDate(item.children)}</p>
-        <p>{getDuration(item.children)}</p>
-       </li>
+       return <>
+       {i % 2 == 0 ? <li className="darkLi" key={i}>
+       <Link to={{pathname:`/podcast/${props.episodeId}/episode/${getId(item.children)}`}} state={{podcast:props.podcastInfo,
+       episodeTitle:getTitle(item.children),
+       episodeDescription:getDescription(item.children),
+       episodeMedia:getMedia(item.children)}}><p>{getTitle(item.children)}</p></Link>
+       <p>{getDate(item.children)}</p>
+       <p>{getDuration(item.children)}</p>
+      
+      </li> : <li className="whiteLi" key={i}>
+       <Link to={{pathname:`/podcast/${props.episodeId}/episode/${getId(item.children)}`}} state={{podcast:props.podcastInfo,
+       episodeTitle:getTitle(item.children),
+       episodeDescription:getDescription(item.children),
+       episodeMedia:getMedia(item.children)}}><p>{getTitle(item.children)}</p></Link>
+       <p>{getDate(item.children)}</p>
+       <p>{getDuration(item.children)}</p>
+      
+      </li>}
+       </>
       })}
     </ul>
+    </div>
   </div>;
 };
 

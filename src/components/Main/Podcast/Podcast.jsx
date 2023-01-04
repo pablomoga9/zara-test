@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { podcastContext } from "../../../context/podcastContext";
 import Episode from "./Episode/Episode";
+import { loaderContext } from '../../../context/loaderContext';
 
 const Podcast = () => {
   var XMLParser = require('react-xml-parser');
   const [podcastData, setPodcastData] = useState(null);
   const { podcast, setPodcast } = useContext(podcastContext);
-  const [id,setId] = useState(null);
+  const [id, setId] = useState(null);
+  const { loading, setLoading } = useContext(loaderContext);
 
   useEffect(() => {
     setPodcast([])
@@ -73,15 +75,26 @@ const Podcast = () => {
   return <>
     <div className="podcastInfo">
       {podcastData !== null ? podcast.length !== 0 ? <div className="podcastGroup">
+        {setLoading(false)}
         <div className="podcastDetail"><img src={getImageSrc()} alt="" />
           <h3>{getTitle()}</h3>
           <p>by {getAuthor()}</p>
-          <p dangerouslySetInnerHTML={{__html:`Description:${getDescription()}`}}>
+          <p className="descriptionPodcast" dangerouslySetInnerHTML={{ __html: `<b class="descriptionTitle">Description:</b>${getDescription()}` }}>
           </p></div>
-        <Episode data={getEpisodes()} episodeId={id} podcastInfo={{img:getImageSrc(),
-        title:getTitle(),
-        description:getDescription(),author:getAuthor()}} />
-      </div> : <div className="podcastLoading"><img className="loadingImage" src={podcastData.results[0].artworkUrl100} alt="" /><h2 className="loadingText">Loading...</h2></div> : <h2>None</h2>}
+        <Episode data={getEpisodes()} episodeId={id} podcastInfo={{
+          img: getImageSrc(),
+          title: getTitle(),
+          description: getDescription(), author: getAuthor()
+        }} />
+      </div> : <div className="podcastLoading"> {setLoading(true)}<img className="loadingImage" src={podcastData.results[0].artworkUrl100} alt="" /><div className="center">
+        <div className="loading">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div></div> : <h2>None</h2>}
     </div>
   </>;
 };

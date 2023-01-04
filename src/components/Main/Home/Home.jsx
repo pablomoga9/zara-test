@@ -39,7 +39,6 @@ const Home = () => {
       }
     }
     getPodcasts()
-    data.length !== 0 ? setLoading(false) : setLoading(true);
   }, [setData, setDate, setLoading])
 
   return <>
@@ -49,7 +48,7 @@ const Home = () => {
         <input className="inputFilter" type="text" placeholder="Filter podcasts..." onChange={(e)=>setQuery(e.target.value)}/>
       </div>
       <div className="podcast_list">
-      
+          {setLoading(false)}
          {data.length !== 0 ? (search(data.feed.entry)).map((element, i) => {
           return <div key={i} className="list_item">
             <img src={`${element['im:image'][2].label}`} alt="" />
@@ -61,6 +60,7 @@ const Home = () => {
           </div>
           
         }) : <>
+        {setLoading(true)}
         <h1>Nothing</h1></>}
       </div>
     </section>
