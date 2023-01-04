@@ -51,5 +51,20 @@ Además, para cualquier proceso de carga entre vistas, en el header, se muestra 
 ![clickList](assets/images/zaraPodcastDetail.PNG)
 
 
-En la vista detalle del podcast encontramos su título, imagen, autor y una descripción por un lado. A su derecha, se muestra el número de episodios y una tabla de estos con sus respectivos títulos, fechas de publicación y duración en segundos. 
+En la vista detalle del podcast encontramos su título, imagen, autor y una descripción por un lado. A su derecha, se muestra el número de episodios y una tabla de estos con sus respectivos títulos, fechas de publicación y duración.
+
+Clickando en el título de un episodio se irá a la vista detallle del episodio en cuestión. 
+"/podcast/{podcastId}/episode/{episodeId}"
+
+
+
+<b>Detalle del episodio</b>
+
+
+
+En esta vista encontramos de nuevo los detalles correspondientes al podcast a la izquiera y a la derecha, el título, descripción, autor y reproductor de audio del episodio.
+
+
+
+![clickList](assets/images/zaraEisodeDetail.PNG)
 
